@@ -1,7 +1,8 @@
-package com.techTask.socialNetwork;
+package com.akamai.socialnetworkapi;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
@@ -28,9 +29,9 @@ public class SocialNetworkPost {
     private String content;
 
     @Column(name = "view_count")
-    private Long viewCount;
+    private Integer viewCount;
 
-    public SocialNetworkPost(Long id, LocalDate postDate, String postCategory, String author, String content, Long viewCount) {
+    public SocialNetworkPost(Long id, LocalDate postDate, String postCategory, String author, String content, Integer viewCount) {
         this.id = id;
         this.postDate = postDate;
         this.postCategory = postCategory;

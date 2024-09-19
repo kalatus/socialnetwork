@@ -1,34 +1,42 @@
-package com.techTask.socialNetwork;
+package com.akamai.socialnetworkapi;
 
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
+import java.util.*;
+
 @Service
-@EnableScheduling
 public class SocialNetworkPostService {
 
     @Autowired
     private SocialNetworkPostRepository socialNetworkPostRepository;
 
-    @Cacheable(value = "topPosts", key = "#category + '-' + #page + '-' + #size")
-    public Page<SocialNetworkPost> getTopPostsByCategory(String category, int page, int size) {
-        return socialNetworkPostRepository.findTopByCategoryOrderByViewCountDesc(category, PageRequest.of(page, size));
+
+    public Map<String, List<SocialNetworkPost>> getTopPostsForEachCategory(String category) {
+        List<SocialNetworkPost> all = socialNetworkPostRepository.findAll();
+        Map<String, List<SocialNetworkPost>> map = new HashMap<>();
+        for(SocialNetworkPost socialNetworkPost : all){
+            List<SocialNetworkPost> socialNetworkPosts = map.get(socialNetworkPost.getPostCategory());
+            socialNetworkPosts.add(socialNetworkPost);
+        }
+
+        for(Map.Entry<String, List<SocialNetworkPost>> entry : map.entrySet()){
+            entry.getValue().sort(Comparator.comparing(SocialNetworkPost::getViewCount));
+            map.put(entry.getKey(), entry.getValue());
+        }
+        return map;
     }
 
-    @Cacheable(value = "postsByAuthor", key = "#author + '-' + #page + '-' + #size")
-    public Page<SocialNetworkPost> searchPostsByAuthor(String author, int page, int size) {
-        return socialNetworkPostRepository.findByAuthor(author, PageRequest.of(page, size));
+    public List<SocialNetworkPost> searchPostsByAuthor(String author) {
+        List<SocialNetworkPost> all = socialNetworkPostRepository.findAll();
+        ArrayList<SocialNetworkPost> socialNetworkPosts = new ArrayList<>();
+        for(SocialNetworkPost post : all){
+            if(post.getAuthor() == author){
+                socialNetworkPosts.add(post);
+            }
+        }
+        return all;
     }
 
-    @Scheduled(fixedRate = 20 * 60 * 1000)
-    @CacheEvict(value = {"topPosts", "postsByAuthor"}, allEntries = true)
-    public void clearCache(){
-        System.out.println("All caches Cleared!");
-    }
+
 }
