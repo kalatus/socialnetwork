@@ -15,7 +15,7 @@ The project has H2 in memory database set up with test data for your convenience
 
 ### Task overview:
 
-Please clone a following Springboot maven project:
+Please clone a following Spring Boot maven project:
 https://github.com/kalatus/socialnetwork.git
 
 Its business domain is simple it manages the following object (object defined in pseudo-code):
