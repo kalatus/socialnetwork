@@ -1,22 +1,25 @@
+### Prerequisites
+Before the interview, make sure to review the task details and set up your environment as per the suggestions provided:
+
+1. Please clone a following Spring Boot maven project: https://github.com/kalatus/socialnetwork.git
+2. Import the project into your preferred IDE
+3. Make sure you have JDK 17 installed
+4. Make sure you have Maven installed  
+
 ### Introduction
 
 During the live coding task, we want to check the basic knowledge and abilities related to **Java**, **Spring**, **Maven**, and **Git**,
 design and programming principles and good practices.
 
-Imagine that you have been assigned to a project that has been started by some junior member,
-it has some bugs and suboptimal implementation.
+Imagine that you have been assigned to a project that has been started by some junior member, it has some bugs and suboptimal implementation.
 
+### Task overview:
 Your task is to fix the bugs and make it production ready (**include all the facilities that are essential for production
 maintenance and use, please remember about the test coverage as well**).
 
-You are free to use external resources (if you don't remember some API you are free to check up on it) and include dependencies. 
+You are free to use external resources (if you don't remember some API you are free to check up on it) and include dependencies.
 
 The project has H2 in memory database set up with test data for your convenience.
-
-### Task overview:
-
-Please clone a following Spring Boot maven project:
-https://github.com/kalatus/socialnetwork.git
 
 Its business domain is simple it manages the following object (object defined in pseudo-code):
 
