@@ -1,10 +1,10 @@
 ### Prerequisites
 Before the interview, make sure to review the task details and set up your environment as per the suggestions provided:
 
-1. Please clone a following Spring Boot maven project: https://github.com/kalatus/socialnetwork.git
-2. Import the project into your preferred IDE
-3. Make sure you have JDK 17 installed
-4. Make sure you have compatible Maven installed  
+>1. Please clone a following Spring Boot maven project: https://github.com/kalatus/socialnetwork.git
+>2. Import the project into your preferred IDE
+>3. Make sure you have JDK 17 installed
+>4. Make sure you have compatible Maven installed  
 
 ### Introduction
 
